@@ -8,6 +8,7 @@ const routes = express.Router()
 
 routes.get('/ongs', async (Request, Response) => {
     const ongs = await connection('ongs').select('*');
+    return Response.json(ongs);
 });
 
 routes.post('/ongs', async (Request, Response) => {
