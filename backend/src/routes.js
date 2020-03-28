@@ -1,11 +1,11 @@
 const express = require('express')
 
-const app = express()
+const routes = express.Router()
 
-app.get('/', (Request, Response) => {
+routes.get('/', (Request, Response) => {
     return Response.json({
         "Aluno":"Jaime Rodrigues"
     })
 })
 
-app.listen(3333)
+module.exports =routes;
