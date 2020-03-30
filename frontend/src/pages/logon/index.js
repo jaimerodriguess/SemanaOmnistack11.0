@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './styles.css';
+import './style.css';
 import heroesImg from '../../assets/heroes.png';
 import logoImg from '../../assets/logo.svg';
 import {FiLogIn} from 'react-icons/fi';
