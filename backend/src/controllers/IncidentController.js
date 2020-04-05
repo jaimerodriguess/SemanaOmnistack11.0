@@ -5,7 +5,6 @@ module.exports = {
         const { page = 1 } = request.query;
 
         const [count] = await connection('incidents').count();
-        console.log(count);
 
         const incidents = await connection('incidents')
             .join('ongs', 'ongs.id', '=', 'incidents.ong_id')
@@ -25,9 +24,9 @@ module.exports = {
     },
     
     
-    async create(Request, Response) {
-        const { title, description, value } = Request.body;
-        const ong_id = Request.headers.authorization;
+    async create(request, response) {
+        const { title, description, value } = request.body;
+        const ong_id = request.headers.authorization;
 
         const [id] = await connection('incidents').insert({
             title,
@@ -35,17 +34,15 @@ module.exports = {
             value,
             ong_id,
         });
-        return Response.json({ id });
+        return response.json({ id });
     },
 
     async delete(Request, Response) {
         const { id } = Request.params;
         const ong_id = Request.headers.authorization;
+        const incident = await connection('incidents').where('id', id).select('ong_id').first();
 
-        const incident = await connection('incidents')
-            .where('id', id)
-            .select('ong_id')
-            .first();
+        console.log(ong_id)
 
         if(incident.ong_id != ong_id) {
             return Response.status(401).json({ error: 'Operation not permited.'});
@@ -53,6 +50,7 @@ module.exports = {
 
         await connection('incidents').where('id', id).delete();
         return Response.status(204).send();
+        
     }
 
 
