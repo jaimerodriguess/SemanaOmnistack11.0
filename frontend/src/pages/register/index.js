@@ -9,6 +9,7 @@ export default function Register(){
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [whatsapp, setWhatsapp] = useState('');
+    const [telefone, setTelefone] = useState('');
     const [city, setCity] = useState('');
     const [uf, setUf] = useState('');
 
@@ -20,6 +21,7 @@ export default function Register(){
         const data = {
             name,
             email,
+            telefone,
             whatsapp,
             city,
             uf
@@ -39,15 +41,15 @@ export default function Register(){
                 <section>
                     <img src={logoImg} alt="Be The Hero"/>
                     <h1>Cadastro</h1>
-                    <p>Faça seu cadastro, entre na plataforma e ajude pessoas a encontrarem os casos da sua ONG</p>
+                    <p>Faça seu cadastro, entre na plataforma de Assembléia Digital, e ajude pessoas a decidirem os casos da sua Instituição</p>
                     <Link className="back-link" to="/">
                         <FiArrowLeft size={18} color="#E02041" />
-                        Tenho cadastro.
+                        Login.
                     </Link>
                 </section>
                 <form onSubmit={handleRegister}>
                     <input
-                        placeholder="Nome da ONG"
+                        placeholder="Nome do Instituição"
                         value={name}
                         onChange={e => setName(e.target.value)}
                     />
@@ -55,6 +57,11 @@ export default function Register(){
                         type="email" placeholder="E-mail"
                         value={email}
                         onChange={e => setEmail(e.target.value)}
+                    />
+                    <input
+                        placeholder="Telefone"
+                        value={telefone}
+                        onChange={e => setTelefone(e.target.value)}
                     />
                     <input
                         placeholder="Whatsapp"
